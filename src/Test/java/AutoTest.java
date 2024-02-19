@@ -1,4 +1,6 @@
+import Main.java.Auto;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class AutoTest {
@@ -26,6 +28,4 @@ public class AutoTest {
         Auto auto = new Auto(20000, 50000, 50);
         assertEquals(50, auto.getCapacidad());
     }
-
-    // You can add more tests as needed
 }

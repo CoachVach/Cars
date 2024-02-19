@@ -1,3 +1,5 @@
+package Main.java;
+
 public class Auto {
     private int precio;
     private int kilometros;
