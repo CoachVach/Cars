@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Para Windows, utiliza 'bat' en lugar de 'sh'
-                    bat 'git clone <URL_DEL_REPOSITORIO>'
+                    bat 'git clone https://github.com/CoachVach/Cars'
                 }
             }
         }
