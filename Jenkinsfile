@@ -4,18 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Para Windows, utiliza 'bat' en lugar de 'sh'
-                    bat 'git clone https://github.com/CoachVach/Cars'
-                }
+                checkout scm
             }
         }
 
         stage('Build and Test') {
             steps {
                 script {
-                    // Usa 'bat' para comandos de construcción y prueba en Windows
-                    bat 'mvn clean test'
+                    // Compilar el código fuente y las pruebas
+                    bat 'javac -d target src/Main/java/**/*.java src/Test/java/**/*.java'
+
+                    // Ejecutar las pruebas
+                    bat 'java -cp target;src/Test/java org.junit.runner.JUnitCore AutoTest'
                 }
             }
         }
@@ -23,8 +23,8 @@ pipeline {
 
     post {
         always {
-            // Usa 'junit' en lugar de 'junit' para la recopilación de informes en Windows
-            junit '**\\target\\surefire-reports\\*.xml'
+            // Configurar la recopilación de informes de pruebas según tu estructura de informes
+            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
