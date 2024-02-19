@@ -4,14 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    // Para Windows, utiliza 'bat' en lugar de 'sh'
+                    bat 'git clone <URL_DEL_REPOSITORIO>'
+                }
             }
         }
 
         stage('Build and Test') {
             steps {
                 script {
-                    sh 'mvn clean test'  // Puedes ajustar esto según tu entorno de construcción
+                    // Usa 'bat' para comandos de construcción y prueba en Windows
+                    bat 'mvn clean test'
                 }
             }
         }
@@ -19,7 +23,8 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'  // Configura la ubicación de tus informes de pruebas
+            // Usa 'junit' en lugar de 'junit' para la recopilación de informes en Windows
+            junit '**\\target\\surefire-reports\\*.xml'
         }
     }
 }
